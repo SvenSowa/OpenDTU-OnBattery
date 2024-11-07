@@ -74,17 +74,17 @@ void WebApiWsLiveClass::generateOnBatteryJsonResponse(JsonVariant& root, bool al
         if (!all) { _lastPublishVictron = millis(); }
     }
 
-    if (all || (HuaweiCan.getLastUpdate() - _lastPublishHuawei) < halfOfAllMillis ) {
-        auto huaweiObj = root["huawei"].to<JsonObject>();
-        huaweiObj["enabled"] = config.Huawei.Enabled;
+    // if (all || (HuaweiCan.getLastUpdate() - _lastPublishHuawei) < halfOfAllMillis ) {
+    //     auto huaweiObj = root["huawei"].to<JsonObject>();
+    //     huaweiObj["enabled"] = config.Huawei.Enabled;
 
-        if (config.Huawei.Enabled) {
-            const RectifierParameters_t * rp = HuaweiCan.get();
-            addTotalField(huaweiObj, "Power", rp->input_power, "W", 2);
-        }
+    //     if (config.Huawei.Enabled) {
+    //         const RectifierParameters_t * rp = HuaweiCan.get();
+    //         addTotalField(huaweiObj, "Power", rp->input_power, "W", 2);
+    //     }
 
-        if (!all) { _lastPublishHuawei = millis(); }
-    }
+    //     if (!all) { _lastPublishHuawei = millis(); }
+    // }
 
     auto spStats = Battery.getStats();
     if (all || spStats->updateAvailable(_lastPublishBattery)) {
