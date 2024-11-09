@@ -11,7 +11,7 @@
 #include "SerialPortManager.h"
 #include "VictronMppt.h"
 #include "Battery.h"
-#include "Huawei_can.h"
+// #include "Huawei_can.h"
 #include "MqttHandleDtu.h"
 #include "MqttHandleHass.h"
 #include "MqttHandleVedirectHass.h"
@@ -19,7 +19,7 @@
 #include "MqttHandleInverter.h"
 #include "MqttHandleInverterTotal.h"
 #include "MqttHandleVedirect.h"
-#include "MqttHandleHuawei.h"
+// #include "MqttHandleHuawei.h"
 #include "MqttHandlePowerLimiter.h"
 #include "MqttHandlePowerLimiterHass.h"
 #include "MqttSettings.h"
@@ -133,7 +133,7 @@ void setup()
     MqttHandleHass.init(scheduler);
     MqttHandleVedirectHass.init(scheduler);
     MqttHandleBatteryHass.init(scheduler);
-    MqttHandleHuawei.init(scheduler);
+    // MqttHandleHuawei.init(scheduler);
     MqttHandlePowerLimiter.init(scheduler);
     MqttHandlePowerLimiterHass.init(scheduler);
     MessageOutput.println("done");
@@ -193,14 +193,14 @@ void setup()
     PowerLimiter.init(scheduler);
 
     // Initialize Huawei AC-charger PSU / CAN bus
-    MessageOutput.println("Initialize Huawei AC charger interface... ");
-    if (PinMapping.isValidHuaweiConfig()) {
-        MessageOutput.printf("Huawei AC-charger miso = %d, mosi = %d, clk = %d, irq = %d, cs = %d, power_pin = %d\r\n", pin.huawei_miso, pin.huawei_mosi, pin.huawei_clk, pin.huawei_irq, pin.huawei_cs, pin.huawei_power);
-        HuaweiCan.init(scheduler, pin.huawei_miso, pin.huawei_mosi, pin.huawei_clk, pin.huawei_irq, pin.huawei_cs, pin.huawei_power);
-        MessageOutput.println("done");
-    } else {
-        MessageOutput.println("Invalid pin config");
-    }
+    // MessageOutput.println("Initialize Huawei AC charger interface... ");
+    // if (PinMapping.isValidHuaweiConfig()) {
+    //     MessageOutput.printf("Huawei AC-charger miso = %d, mosi = %d, clk = %d, irq = %d, cs = %d, power_pin = %d\r\n", pin.huawei_miso, pin.huawei_mosi, pin.huawei_clk, pin.huawei_irq, pin.huawei_cs, pin.huawei_power);
+    //     HuaweiCan.init(scheduler, pin.huawei_miso, pin.huawei_mosi, pin.huawei_clk, pin.huawei_irq, pin.huawei_cs, pin.huawei_power);
+    //     MessageOutput.println("done");
+    // } else {
+    //     MessageOutput.println("Invalid pin config");
+    // }
 
     Battery.init(scheduler);
 }

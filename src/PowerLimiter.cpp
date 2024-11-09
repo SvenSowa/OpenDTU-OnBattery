@@ -10,7 +10,7 @@
 #include "Configuration.h"
 #include "MqttSettings.h"
 #include "NetworkSettings.h"
-#include "Huawei_can.h"
+// #include "Huawei_can.h"
 #include <VictronMppt.h>
 #include "MessageOutput.h"
 #include "inverters/HMS_4CH.h"
@@ -446,9 +446,9 @@ bool PowerLimiterClass::calcPowerLimit(std::shared_ptr<InverterAbstract> inverte
     // kicks in. The only case where this is not desired is if the battery is
     // over the Full Solar Passthrough Threshold. In this case the Power
     // Limiter should run and the PSU will shut down as a consequence.
-    if (!useFullSolarPassthrough() && HuaweiCan.getAutoPowerStatus()) {
-        return shutdown(Status::HuaweiPsu);
-    }
+    // if (!useFullSolarPassthrough() && HuaweiCan.getAutoPowerStatus()) {
+    //     return shutdown(Status::HuaweiPsu);
+    // }
 
     auto meterValid = PowerMeter.isDataValid();
 

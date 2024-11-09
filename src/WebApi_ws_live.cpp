@@ -8,7 +8,7 @@
 #include "Utils.h"
 #include "WebApi.h"
 #include "Battery.h"
-#include "Huawei_can.h"
+// #include "Huawei_can.h"
 #include "PowerMeter.h"
 #include "VictronMppt.h"
 #include "defaults.h"
@@ -87,17 +87,19 @@ void WebApiWsLiveClass::generateOnBatteryJsonResponse(JsonVariant& root, bool al
         if (!all) { _lastPublishVictron = millis(); }
     }
 
-    if (all || (HuaweiCan.getLastUpdate() - _lastPublishHuawei) < halfOfAllMillis ) {
-        auto huaweiObj = root["huawei"].to<JsonObject>();
-        huaweiObj["enabled"] = config.Huawei.Enabled;
+    auto huaweiObj = root["huawei"].to<JsonObject>();
+    huaweiObj["enabled"] = false;
+    // if (all || (HuaweiCan.getLastUpdate() - _lastPublishHuawei) < halfOfAllMillis ) {
+    //     auto huaweiObj = root["huawei"].to<JsonObject>();
+    //     huaweiObj["enabled"] = config.Huawei.Enabled;
 
-        if (config.Huawei.Enabled) {
-            const RectifierParameters_t * rp = HuaweiCan.get();
-            addTotalField(huaweiObj, "Power", rp->input_power, "W", 2);
-        }
+    //     if (config.Huawei.Enabled) {
+    //         const RectifierParameters_t * rp = HuaweiCan.get();
+    //         addTotalField(huaweiObj, "Power", rp->input_power, "W", 2);
+    //     }
 
-        if (!all) { _lastPublishHuawei = millis(); }
-    }
+    //     if (!all) { _lastPublishHuawei = millis(); }
+    // }
 
     auto spStats = Battery.getStats();
     if (all || spStats->updateAvailable(_lastPublishBattery)) {
@@ -367,7 +369,7 @@ void WebApiWsLiveClass::onLivedataStatus(AsyncWebServerRequest* request)
         generateOnBatteryJsonResponse(root, true);
 
         WebApi.sendJsonResponse(request, response, __FUNCTION__, __LINE__);
-    
+
     } catch (const std::bad_alloc& bad_alloc) {
         MessageOutput.printf("Calling /api/livedata/status has temporarily run out of resources. Reason: \"%s\".\r\n", bad_alloc.what());
         WebApi.sendTooManyRequests(request);

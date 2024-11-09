@@ -28,8 +28,8 @@
 #include <AsyncJson.h>
 #include "WebApi_ws_vedirect_live.h"
 #include "WebApi_vedirect.h"
-#include "WebApi_ws_Huawei.h"
-#include "WebApi_Huawei.h"
+// #include "WebApi_ws_Huawei.h"
+// #include "WebApi_Huawei.h"
 #include "WebApi_ws_battery.h"
 #include <ESPAsyncWebServer.h>
 #include <TaskSchedulerDeclarations.h>
@@ -79,8 +79,8 @@ private:
     WebApiWsLiveClass _webApiWsLive;
     WebApiWsVedirectLiveClass _webApiWsVedirectLive;
     WebApiVedirectClass _webApiVedirect;
-    WebApiHuaweiClass _webApiHuaweiClass;
-    WebApiWsHuaweiLiveClass _webApiWsHuaweiLive;
+    // WebApiHuaweiClass _webApiHuaweiClass;
+    // WebApiWsHuaweiLiveClass _webApiWsHuaweiLive;
     WebApiWsBatteryLiveClass _webApiWsBatteryLive;
 };
 

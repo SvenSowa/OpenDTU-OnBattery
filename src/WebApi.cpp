@@ -40,8 +40,8 @@ void WebApiClass::init(Scheduler& scheduler)
     _webApiPowerLimiter.init(_server, scheduler);
     _webApiWsVedirectLive.init(_server, scheduler);
     _webApiVedirect.init(_server, scheduler);
-    _webApiWsHuaweiLive.init(_server, scheduler);
-    _webApiHuaweiClass.init(_server, scheduler);
+    // _webApiWsHuaweiLive.init(_server, scheduler);
+    // _webApiHuaweiClass.init(_server, scheduler);
     _webApiWsBatteryLive.init(_server, scheduler);
 
     _server.begin();
@@ -53,7 +53,7 @@ void WebApiClass::reload()
     _webApiWsLive.reload();
     _webApiWsBatteryLive.reload();
     _webApiWsVedirectLive.reload();
-    _webApiWsHuaweiLive.reload();
+    // _webApiWsHuaweiLive.reload();
 }
 
 bool WebApiClass::checkCredentials(AsyncWebServerRequest* request)
