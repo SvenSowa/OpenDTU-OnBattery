@@ -87,6 +87,9 @@ void WebApiWsLiveClass::generateOnBatteryJsonResponse(JsonVariant& root, bool al
         if (!all) { _lastPublishSolarCharger = millis(); }
     }
 
+    // important, otherwise the web interface wont work
+    auto huaweiObj = root["huawei"].to<JsonObject>();
+    huaweiObj["enabled"] = config.Huawei.Enabled;
     // if (all || (HuaweiCan.getDataPoints().getLastUpdate() - _lastPublishHuawei) < halfOfAllMillis ) {
     //     auto huaweiObj = root["huawei"].to<JsonObject>();
     //     huaweiObj["enabled"] = config.Huawei.Enabled;
