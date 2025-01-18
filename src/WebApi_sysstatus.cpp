@@ -91,7 +91,7 @@ void WebApiSysstatusClass::onSystemStatus(AsyncWebServerRequest* request)
     root["nrf_pvariant"] = Hoymiles.getRadioNrf()->isPVariant();
 
     root["cmt_configured"] = PinMapping.isValidCmt2300Config();
-    root["cmt_connected"] = Hoymiles.getRadioCmt()->isConnected();
+    root["cmt_connected"] = false; //Hoymiles.getRadioCmt()->isConnected();
 
     JsonArray uarts = root["uarts"].to<JsonArray>();
     for (auto const& allocation : SerialPortManager.getAllocations()) {

@@ -5,9 +5,9 @@
 
 #include "AsyncJson.h"
 #include "Arduino.h"
-#include "JkBmsDataPoints.h"
-#include "JbdBmsDataPoints.h"
-#include "VeDirectShuntController.h"
+// #include "JkBmsDataPoints.h"
+// #include "JbdBmsDataPoints.h"
+// #include "VeDirectShuntController.h"
 #include <cfloat>
 
 // mandatory interface for all kinds of batteries
@@ -105,77 +105,77 @@ class BatteryStats {
         uint32_t _lastUpdateDischargeCurrentLimit = 0;
 };
 
-class PylontechBatteryStats : public BatteryStats {
-    friend class PylontechCanReceiver;
+// class PylontechBatteryStats : public BatteryStats {
+//     friend class PylontechCanReceiver;
 
-    public:
-        void getLiveViewData(JsonVariant& root) const final;
-        void mqttPublish() const final;
-        bool getImmediateChargingRequest() const { return _chargeImmediately; } ;
-        float getChargeCurrentLimitation() const { return _chargeCurrentLimitation; } ;
+//     public:
+//         void getLiveViewData(JsonVariant& root) const final;
+//         void mqttPublish() const final;
+//         bool getImmediateChargingRequest() const { return _chargeImmediately; } ;
+//         float getChargeCurrentLimitation() const { return _chargeCurrentLimitation; } ;
 
-    private:
-        void setLastUpdate(uint32_t ts) { _lastUpdate = ts; }
+//     private:
+//         void setLastUpdate(uint32_t ts) { _lastUpdate = ts; }
 
-        float _chargeVoltage;
-        float _chargeCurrentLimitation;
-        float _dischargeVoltageLimitation;
-        uint16_t _stateOfHealth;
-        float _temperature;
+//         float _chargeVoltage;
+//         float _chargeCurrentLimitation;
+//         float _dischargeVoltageLimitation;
+//         uint16_t _stateOfHealth;
+//         float _temperature;
 
-        bool _alarmOverCurrentDischarge;
-        bool _alarmOverCurrentCharge;
-        bool _alarmUnderTemperature;
-        bool _alarmOverTemperature;
-        bool _alarmUnderVoltage;
-        bool _alarmOverVoltage;
-        bool _alarmBmsInternal;
+//         bool _alarmOverCurrentDischarge;
+//         bool _alarmOverCurrentCharge;
+//         bool _alarmUnderTemperature;
+//         bool _alarmOverTemperature;
+//         bool _alarmUnderVoltage;
+//         bool _alarmOverVoltage;
+//         bool _alarmBmsInternal;
 
-        bool _warningHighCurrentDischarge;
-        bool _warningHighCurrentCharge;
-        bool _warningLowTemperature;
-        bool _warningHighTemperature;
-        bool _warningLowVoltage;
-        bool _warningHighVoltage;
-        bool _warningBmsInternal;
+//         bool _warningHighCurrentDischarge;
+//         bool _warningHighCurrentCharge;
+//         bool _warningLowTemperature;
+//         bool _warningHighTemperature;
+//         bool _warningLowVoltage;
+//         bool _warningHighVoltage;
+//         bool _warningBmsInternal;
 
-        bool _chargeEnabled;
-        bool _dischargeEnabled;
-        bool _chargeImmediately;
+//         bool _chargeEnabled;
+//         bool _dischargeEnabled;
+//         bool _chargeImmediately;
 
-        uint8_t _moduleCount;
-};
+//         uint8_t _moduleCount;
+// };
 
-class SBSBatteryStats : public BatteryStats {
-    friend class SBSCanReceiver;
+// class SBSBatteryStats : public BatteryStats {
+//     friend class SBSCanReceiver;
 
-    public:
-        void getLiveViewData(JsonVariant& root) const final;
-        void mqttPublish() const final;
-        float getChargeCurrent() const { return _current; } ;
-        float getChargeCurrentLimitation() const { return _chargeCurrentLimitation; } ;
+//     public:
+//         void getLiveViewData(JsonVariant& root) const final;
+//         void mqttPublish() const final;
+//         float getChargeCurrent() const { return _current; } ;
+//         float getChargeCurrentLimitation() const { return _chargeCurrentLimitation; } ;
 
-    private:
-        void setLastUpdate(uint32_t ts) { _lastUpdate = ts; }
+//     private:
+//         void setLastUpdate(uint32_t ts) { _lastUpdate = ts; }
 
-        float _chargeVoltage;
-        float _chargeCurrentLimitation;
-        uint16_t _stateOfHealth;
-        float _current;
-        float _temperature;
+//         float _chargeVoltage;
+//         float _chargeCurrentLimitation;
+//         uint16_t _stateOfHealth;
+//         float _current;
+//         float _temperature;
 
-        bool _alarmUnderTemperature;
-        bool _alarmOverTemperature;
-        bool _alarmUnderVoltage;
-        bool _alarmOverVoltage;
-        bool _alarmBmsInternal;
+//         bool _alarmUnderTemperature;
+//         bool _alarmOverTemperature;
+//         bool _alarmUnderVoltage;
+//         bool _alarmOverVoltage;
+//         bool _alarmBmsInternal;
 
-        bool _warningHighCurrentDischarge;
-        bool _warningHighCurrentCharge;
+//         bool _warningHighCurrentDischarge;
+//         bool _warningHighCurrentCharge;
 
-        bool _chargeEnabled;
-        bool _dischargeEnabled;
-};
+//         bool _chargeEnabled;
+//         bool _dischargeEnabled;
+// };
 
 class PytesBatteryStats : public BatteryStats {
     friend class PytesCanReceiver;
@@ -255,90 +255,90 @@ class PytesBatteryStats : public BatteryStats {
         bool _chargeImmediately;
 };
 
-class JkBmsBatteryStats : public BatteryStats {
-    public:
-        void getLiveViewData(JsonVariant& root) const final {
-            getJsonData(root, false);
-        }
+// class JkBmsBatteryStats : public BatteryStats {
+//     public:
+//         void getLiveViewData(JsonVariant& root) const final {
+//             getJsonData(root, false);
+//         }
 
-        void getInfoViewData(JsonVariant& root) const {
-            getJsonData(root, true);
-        }
+//         void getInfoViewData(JsonVariant& root) const {
+//             getJsonData(root, true);
+//         }
 
-        void mqttPublish() const final;
+//         void mqttPublish() const final;
 
-        uint32_t getMqttFullPublishIntervalMs() const final { return 60 * 1000; }
+//         uint32_t getMqttFullPublishIntervalMs() const final { return 60 * 1000; }
 
-        void updateFrom(JkBms::DataPointContainer const& dp);
+//         void updateFrom(JkBms::DataPointContainer const& dp);
 
-    private:
-        void getJsonData(JsonVariant& root, bool verbose) const;
+//     private:
+//         void getJsonData(JsonVariant& root, bool verbose) const;
 
-        JkBms::DataPointContainer _dataPoints;
-        mutable uint32_t _lastMqttPublish = 0;
-        mutable uint32_t _lastFullMqttPublish = 0;
+//         JkBms::DataPointContainer _dataPoints;
+//         mutable uint32_t _lastMqttPublish = 0;
+//         mutable uint32_t _lastFullMqttPublish = 0;
 
-        uint16_t _cellMinMilliVolt = 0;
-        uint16_t _cellAvgMilliVolt = 0;
-        uint16_t _cellMaxMilliVolt = 0;
-        uint32_t _cellVoltageTimestamp = 0;
-};
+//         uint16_t _cellMinMilliVolt = 0;
+//         uint16_t _cellAvgMilliVolt = 0;
+//         uint16_t _cellMaxMilliVolt = 0;
+//         uint32_t _cellVoltageTimestamp = 0;
+// };
 
-class JbdBmsBatteryStats : public BatteryStats {
-    public:
-        void getLiveViewData(JsonVariant& root) const final {
-            getJsonData(root, false);
-        }
+// class JbdBmsBatteryStats : public BatteryStats {
+//     public:
+//         void getLiveViewData(JsonVariant& root) const final {
+//             getJsonData(root, false);
+//         }
 
-        void getInfoViewData(JsonVariant& root) const {
-            getJsonData(root, true);
-        }
+//         void getInfoViewData(JsonVariant& root) const {
+//             getJsonData(root, true);
+//         }
 
-        void mqttPublish() const final;
+//         void mqttPublish() const final;
 
-        uint32_t getMqttFullPublishIntervalMs() const final { return 60 * 1000; }
+//         uint32_t getMqttFullPublishIntervalMs() const final { return 60 * 1000; }
 
-        void updateFrom(JbdBms::DataPointContainer const& dp);
+//         void updateFrom(JbdBms::DataPointContainer const& dp);
 
-    private:
-        void getJsonData(JsonVariant& root, bool verbose) const;
+//     private:
+//         void getJsonData(JsonVariant& root, bool verbose) const;
 
-        JbdBms::DataPointContainer _dataPoints;
-        mutable uint32_t _lastMqttPublish = 0;
-        mutable uint32_t _lastFullMqttPublish = 0;
+//         JbdBms::DataPointContainer _dataPoints;
+//         mutable uint32_t _lastMqttPublish = 0;
+//         mutable uint32_t _lastFullMqttPublish = 0;
 
-        uint16_t _cellMinMilliVolt = 0;
-        uint16_t _cellAvgMilliVolt = 0;
-        uint16_t _cellMaxMilliVolt = 0;
-        uint32_t _cellVoltageTimestamp = 0;
-};
+//         uint16_t _cellMinMilliVolt = 0;
+//         uint16_t _cellAvgMilliVolt = 0;
+//         uint16_t _cellMaxMilliVolt = 0;
+//         uint32_t _cellVoltageTimestamp = 0;
+// };
 
-class VictronSmartShuntStats : public BatteryStats {
-    public:
-        void getLiveViewData(JsonVariant& root) const final;
-        void mqttPublish() const final;
+// class VictronSmartShuntStats : public BatteryStats {
+//     public:
+//         void getLiveViewData(JsonVariant& root) const final;
+//         void mqttPublish() const final;
 
-        void updateFrom(VeDirectShuntController::data_t const& shuntData);
+//         void updateFrom(VeDirectShuntController::data_t const& shuntData);
 
-    private:
-        float _temperature;
-        bool _tempPresent;
-        uint8_t _chargeCycles;
-        uint32_t _timeToGo;
-        float _chargedEnergy;
-        float _dischargedEnergy;
-        int32_t _instantaneousPower;
-        float _midpointVoltage;
-        float _midpointDeviation;
-        float _consumedAmpHours;
-        int32_t _lastFullCharge;
+//     private:
+//         float _temperature;
+//         bool _tempPresent;
+//         uint8_t _chargeCycles;
+//         uint32_t _timeToGo;
+//         float _chargedEnergy;
+//         float _dischargedEnergy;
+//         int32_t _instantaneousPower;
+//         float _midpointVoltage;
+//         float _midpointDeviation;
+//         float _consumedAmpHours;
+//         int32_t _lastFullCharge;
 
-        bool _alarmLowVoltage;
-        bool _alarmHighVoltage;
-        bool _alarmLowSOC;
-        bool _alarmLowTemperature;
-        bool _alarmHighTemperature;
-};
+//         bool _alarmLowVoltage;
+//         bool _alarmHighVoltage;
+//         bool _alarmLowSOC;
+//         bool _alarmLowTemperature;
+//         bool _alarmHighTemperature;
+// };
 
 class MqttBatteryStats : public BatteryStats {
     friend class MqttBattery;

@@ -8,7 +8,7 @@
 #include "Utils.h"
 #include "WebApi.h"
 #include "Battery.h"
-#include <gridcharger/huawei/Controller.h>
+// #include <gridcharger/huawei/Controller.h>
 #include "PowerMeter.h"
 #include "defaults.h"
 #include "SolarCharger.h"
@@ -87,20 +87,20 @@ void WebApiWsLiveClass::generateOnBatteryJsonResponse(JsonVariant& root, bool al
         if (!all) { _lastPublishSolarCharger = millis(); }
     }
 
-    if (all || (HuaweiCan.getDataPoints().getLastUpdate() - _lastPublishHuawei) < halfOfAllMillis ) {
-        auto huaweiObj = root["huawei"].to<JsonObject>();
-        huaweiObj["enabled"] = config.Huawei.Enabled;
+    // if (all || (HuaweiCan.getDataPoints().getLastUpdate() - _lastPublishHuawei) < halfOfAllMillis ) {
+    //     auto huaweiObj = root["huawei"].to<JsonObject>();
+    //     huaweiObj["enabled"] = config.Huawei.Enabled;
 
-        if (config.Huawei.Enabled) {
-            auto const& dataPoints = HuaweiCan.getDataPoints();
-            auto oInputPower = dataPoints.get<GridCharger::Huawei::DataPointLabel::InputPower>();
-            if (oInputPower) {
-                addTotalField(huaweiObj, "Power", *oInputPower, "W", 2);
-            }
-        }
+    //     if (config.Huawei.Enabled) {
+    //         auto const& dataPoints = HuaweiCan.getDataPoints();
+    //         auto oInputPower = dataPoints.get<GridCharger::Huawei::DataPointLabel::InputPower>();
+    //         if (oInputPower) {
+    //             addTotalField(huaweiObj, "Power", *oInputPower, "W", 2);
+    //         }
+    //     }
 
-        if (!all) { _lastPublishHuawei = millis(); }
-    }
+    //     if (!all) { _lastPublishHuawei = millis(); }
+    // }
 
     auto spStats = Battery.getStats();
     if (all || spStats->updateAvailable(_lastPublishBattery)) {

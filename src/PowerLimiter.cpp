@@ -9,7 +9,7 @@
 #include "Configuration.h"
 #include "MqttSettings.h"
 #include "NetworkSettings.h"
-#include <gridcharger/huawei/Controller.h>
+// #include <gridcharger/huawei/Controller.h>
 #include <SolarCharger.h>
 #include "MessageOutput.h"
 #include <ctime>
@@ -619,13 +619,13 @@ uint16_t PowerLimiterClass::calcPowerBusUsage(uint16_t powerRequested)
     // desired is if the battery is over the Full Solar Passthrough Threshold.
     // In this case battery-powered inverters should produce power and the PSU
     // will shut down as a consequence.
-    if (!isFullSolarPassthroughActive() && HuaweiCan.getAutoPowerStatus()) {
-        if (_verboseLogging) {
-            MessageOutput.println("[DPL] DC power bus usage blocked by "
-                    "HuaweiCan auto power");
-        }
-        return 0;
-    }
+    // if (!isFullSolarPassthroughActive() && HuaweiCan.getAutoPowerStatus()) {
+    //     if (_verboseLogging) {
+    //         MessageOutput.println("[DPL] DC power bus usage blocked by "
+    //                 "HuaweiCan auto power");
+    //     }
+    //     return 0;
+    // }
 
     auto solarOutputDc = getSolarPassthroughPower();
     auto solarOutputAc = dcPowerBusToInverterAc(solarOutputDc);

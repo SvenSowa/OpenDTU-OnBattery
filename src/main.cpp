@@ -11,7 +11,7 @@
 #include "MessageOutput.h"
 #include "SerialPortManager.h"
 #include "Battery.h"
-#include <gridcharger/huawei/Controller.h>
+// #include <gridcharger/huawei/Controller.h>
 #include "MqttHandleDtu.h"
 #include "MqttHandleHass.h"
 #include "MqttHandleVedirectHass.h"
@@ -19,7 +19,7 @@
 #include "MqttHandleInverter.h"
 #include "MqttHandleInverterTotal.h"
 #include "MqttHandleVedirect.h"
-#include "MqttHandleHuawei.h"
+// #include "MqttHandleHuawei.h"
 #include "MqttHandlePowerLimiter.h"
 #include "MqttHandlePowerLimiterHass.h"
 #include "MqttSettings.h"
@@ -140,7 +140,7 @@ void setup()
     MqttHandleHass.init(scheduler);
     MqttHandleVedirectHass.init(scheduler);
     MqttHandleBatteryHass.init(scheduler);
-    MqttHandleHuawei.init(scheduler);
+    // MqttHandleHuawei.init(scheduler);
     MqttHandlePowerLimiter.init(scheduler);
     MqttHandlePowerLimiterHass.init(scheduler);
     MessageOutput.println("done");
@@ -182,7 +182,7 @@ void setup()
     SolarCharger.init(scheduler);
     PowerMeter.init(scheduler);
     PowerLimiter.init(scheduler);
-    HuaweiCan.init(scheduler);
+    // HuaweiCan.init(scheduler);
     Battery.init(scheduler);
 }
 

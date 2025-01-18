@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 #pragma once
 
-#include "W5500.h"
+// #include "W5500.h"
 #include <DNSServer.h>
 #include <TaskSchedulerDeclarations.h>
 #include <WiFi.h>
@@ -84,7 +84,7 @@ private:
     bool _ethConnected = false;
     std::vector<DtuNetworkEventCbList_t> _cbEventList;
     bool _lastMdnsEnabled = false;
-    std::unique_ptr<W5500> _w5500;
+    // std::unique_ptr<W5500> _w5500;
 };
 
 extern NetworkSettingsClass NetworkSettings;

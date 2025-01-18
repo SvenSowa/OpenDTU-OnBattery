@@ -39,21 +39,21 @@ void InverterSettingsClass::init(Scheduler& scheduler)
             Hoymiles.initNRF(spiClass, pin.nrf24_en, pin.nrf24_irq);
         }
 
-        if (PinMapping.isValidCmt2300Config()) {
-            Hoymiles.initCMT(pin.cmt_sdio, pin.cmt_clk, pin.cmt_cs, pin.cmt_fcs, pin.cmt_gpio2, pin.cmt_gpio3);
-            MessageOutput.println("  Setting country mode... ");
-            Hoymiles.getRadioCmt()->setCountryMode(static_cast<CountryModeId_t>(config.Dtu.Cmt.CountryMode));
-            MessageOutput.println("  Setting CMT target frequency... ");
-            Hoymiles.getRadioCmt()->setInverterTargetFrequency(config.Dtu.Cmt.Frequency);
-        }
+        // if (PinMapping.isValidCmt2300Config()) {
+        //     Hoymiles.initCMT(pin.cmt_sdio, pin.cmt_clk, pin.cmt_cs, pin.cmt_fcs, pin.cmt_gpio2, pin.cmt_gpio3);
+        //     MessageOutput.println("  Setting country mode... ");
+        //     Hoymiles.getRadioCmt()->setCountryMode(static_cast<CountryModeId_t>(config.Dtu.Cmt.CountryMode));
+        //     MessageOutput.println("  Setting CMT target frequency... ");
+        //     Hoymiles.getRadioCmt()->setInverterTargetFrequency(config.Dtu.Cmt.Frequency);
+        // }
 
         MessageOutput.println("  Setting radio PA level... ");
         Hoymiles.getRadioNrf()->setPALevel((rf24_pa_dbm_e)config.Dtu.Nrf.PaLevel);
-        Hoymiles.getRadioCmt()->setPALevel(config.Dtu.Cmt.PaLevel);
+        // Hoymiles.getRadioCmt()->setPALevel(config.Dtu.Cmt.PaLevel);
 
         MessageOutput.println("  Setting DTU serial... ");
         Hoymiles.getRadioNrf()->setDtuSerial(config.Dtu.Serial);
-        Hoymiles.getRadioCmt()->setDtuSerial(config.Dtu.Serial);
+        // Hoymiles.getRadioCmt()->setDtuSerial(config.Dtu.Serial);
 
         MessageOutput.println("  Setting poll interval... ");
         Hoymiles.setPollInterval(config.Dtu.PollInterval);

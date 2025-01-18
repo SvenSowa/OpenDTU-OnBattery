@@ -81,8 +81,8 @@ private:
     WebApiWsLiveClass _webApiWsLive;
     WebApiWsSolarChargerLiveClass _webApiWsSolarChargerLive;
     WebApiSolarChargerlass _webApiSolarCharger;
-    WebApiHuaweiClass _webApiHuaweiClass;
-    WebApiWsHuaweiLiveClass _webApiWsHuaweiLive;
+    // WebApiHuaweiClass _webApiHuaweiClass;
+    // WebApiWsHuaweiLiveClass _webApiWsHuaweiLive;
     WebApiWsBatteryLiveClass _webApiWsBatteryLive;
 };
 

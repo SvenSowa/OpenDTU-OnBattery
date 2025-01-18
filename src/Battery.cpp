@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 #include "Battery.h"
 #include "MessageOutput.h"
-#include "PylontechCanReceiver.h"
-#include "SBSCanReceiver.h"
-#include "JkBmsController.h"
-#include "JbdBmsController.h"
-#include "VictronSmartShunt.h"
+// #include "PylontechCanReceiver.h"
+// #include "SBSCanReceiver.h"
+// #include "JkBmsController.h"
+// #include "JbdBmsController.h"
+// #include "VictronSmartShunt.h"
 #include "MqttBattery.h"
 #include "PytesCanReceiver.h"
 
@@ -48,27 +48,27 @@ void BatteryClass::updateSettings()
     bool verboseLogging = config.Battery.VerboseLogging;
 
     switch (config.Battery.Provider) {
-        case 0:
-            _upProvider = std::make_unique<PylontechCanReceiver>();
-            break;
-        case 1:
-            _upProvider = std::make_unique<JkBms::Controller>();
-            break;
+        // case 0:
+        //     _upProvider = std::make_unique<PylontechCanReceiver>();
+        //     break;
+        // case 1:
+        //     _upProvider = std::make_unique<JkBms::Controller>();
+        //     break;
         case 2:
             _upProvider = std::make_unique<MqttBattery>();
             break;
-        case 3:
-            _upProvider = std::make_unique<VictronSmartShunt>();
-            break;
+        // case 3:
+        //     _upProvider = std::make_unique<VictronSmartShunt>();
+        //     break;
         case 4:
             _upProvider = std::make_unique<PytesCanReceiver>();
             break;
-        case 5:
-            _upProvider = std::make_unique<SBSCanReceiver>();
-            break;
-        case 6:
-            _upProvider = std::make_unique<JbdBms::Controller>();
-            break;
+        // case 5:
+        //     _upProvider = std::make_unique<SBSCanReceiver>();
+        //     break;
+        // case 6:
+        //     _upProvider = std::make_unique<JbdBms::Controller>();
+        //     break;
         default:
             MessageOutput.printf("[Battery] Unknown provider: %d\r\n", config.Battery.Provider);
             return;
